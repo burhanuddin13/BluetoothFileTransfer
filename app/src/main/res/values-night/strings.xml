@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_file">Select File</string>
+    <string name="send_file">Send File</string>
+    <string name="quit">Quit</string>
+</resources>
