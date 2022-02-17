@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/BluetoothTransfer/app/src/main/res/drawable/bluetooth.xml" value="0.2265" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/BluetoothTransfer/app/src/main/res/drawable/ic_bmf_sign.xml" value="0.2265" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/BluetoothTransfer/app/src/main/res/drawable/round_button.xml" value="0.2265" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/BluetoothTransfer/app/src/main/res/layout/activity_main.xml" value="0.25" />

@@ -1,15 +1,19 @@
 package com.example.bluetoothtransfer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView txtLocation;
     Button btnSelect, btnSend;
+    ImageView Sign;
 
     BluetoothAdapter BTAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+
         txtLocation = (TextView) findViewById(R.id.txtFileLocation); //Referencing File Location TextView
         btnSelect = (Button) findViewById(R.id.btnSelectFile); //Referencing Select File Button
         btnSelect.setOnClickListener(v -> { //When Select File button is clicked
@@ -42,6 +51,28 @@ public class MainActivity extends AppCompatActivity {
 
         btnSend = (Button) findViewById(R.id.btnSendFile); //Referencing Send File Button
         btnSend.setOnClickListener(v -> sendViaBluetooth()); //When Send File button is clicked
+
+        Sign = (ImageView) findViewById(R.id.Sign);
+        Sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDarkModeOn){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("isDarkModeOn", false);
+                    editor.apply();
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("isDarkModeOn", true);
+                    editor.apply();
+                }
+            }
+        });
+
+        if (isDarkModeOn)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     //Function will be called automatically when Quit Button is clicked
